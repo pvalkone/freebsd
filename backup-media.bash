@@ -3,7 +3,8 @@
 LOCK_FILE=/tmp/backup-media.pid
 RSYNC_BIN=/usr/local/bin/rsync
 SSH_BIN=/usr/bin/ssh
-RSYNC_EXCLUDE_PATTERNS_FILE=$HOME/.rsync/exclude
+RSYNC_LOG_FILE=${HOME}/rsync.log
+RSYNC_EXCLUDE_PATTERNS_FILE=${HOME}/.rsync/exclude
 REMOTE_PORT=
 REMOTE_USER=
 REMOTE_HOST=
@@ -24,6 +25,6 @@ fi
 trap "rm -f ${LOCK_FILE}; exit $?" INT TERM EXIT
 echo "$$" > ${LOCK_FILE}
 
-${RSYNC_BIN} -avs -P --stats --delete --exclude-from=${RSYNC_EXCLUDE_PATTERNS_FILE} -e "${SSH_BIN} -p ${REMOTE_PORT}" ${REMOTE_USER}@${REMOTE_HOST}:${REMOTE_PATH} ${LOCAL_PATH}
+${RSYNC_BIN} -avs -P --stats --delete --log-file=${RSYNC_LOG_FILE} --exclude-from=${RSYNC_EXCLUDE_PATTERNS_FILE} -e "${SSH_BIN} -p ${REMOTE_PORT}" ${REMOTE_USER}@${REMOTE_HOST}:${REMOTE_PATH} ${LOCAL_PATH} &> /dev/null
 
 exit 0
