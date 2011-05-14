@@ -24,6 +24,6 @@ fi
 trap "rm -f ${LOCK_FILE}; exit $?" INT TERM EXIT
 echo "$$" > ${LOCK_FILE}
 
-${RSYNC_BIN} -avs -P --delete --exclude-from=${RSYNC_EXCLUDE_PATTERNS_FILE} -e "${SSH_BIN} -p ${REMOTE_PORT}" ${REMOTE_USER}@${REMOTE_HOST}:${REMOTE_PATH} ${LOCAL_PATH}
+${RSYNC_BIN} -avs -P --stats --delete --exclude-from=${RSYNC_EXCLUDE_PATTERNS_FILE} -e "${SSH_BIN} -p ${REMOTE_PORT}" ${REMOTE_USER}@${REMOTE_HOST}:${REMOTE_PATH} ${LOCAL_PATH}
 
 exit 0
