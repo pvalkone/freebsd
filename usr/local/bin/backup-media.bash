@@ -37,4 +37,4 @@ ${RSYNC_BIN} -avs -P --stats --delete --log-file=${RSYNC_LOG_FILE} \
 -p ${REMOTE_PORT}" ${REMOTE_USER}@${REMOTE_HOST}:${REMOTE_PATH} \
 ${LOCAL_PATH} &> /dev/null
 
-exit 0
+exit
