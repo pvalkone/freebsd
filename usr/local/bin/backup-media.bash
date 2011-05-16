@@ -19,7 +19,7 @@ if [ -e "${LOCK_FILE}" ]; then
         if pgrep -F $LOCK_FILE > /dev/null; then
                 PID=$(cat ${LOCK_FILE})
                 echo "Backup still in progress with PID ${PID}, exiting."
-                exit 1
+                exit 255
         else
                 # Clean up previous lock file
                 rm -f ${LOCK_FILE}
