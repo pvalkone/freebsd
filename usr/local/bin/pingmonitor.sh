@@ -25,6 +25,8 @@ isp="saunalahti"
 # These options will be given to /usr/sbin/ppp
 ppp_opts="-ddial"
 
+MODEM=`/usr/sbin/usbconfig list | grep -i 'Huawei' | cut -d ':' -f 1`
+
 # --- End of user-modifiable variables ---
 
 # Load in system configuration.
@@ -120,6 +122,10 @@ if [ $ping_error -ne 0 ]; then
 
                 # wait again
                 sleep 5
+
+                # Reset the modem
+                /usr/sbin/usbconfig -d ${MODEM} reset &> /dev/null
+                sleep 10
 
                 # start up ppp again
                 /usr/sbin/ppp $ppp_opts $isp > /dev/null 2> /dev/null
