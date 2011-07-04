@@ -123,12 +123,12 @@ if [ $ping_error -ne 0 ]; then
                 # wait again
                 sleep 5
 
-                # Reset the modem
+                # Reset the modem, PPP should start up again when devd(8) detects the device
                 /usr/sbin/usbconfig -d ${MODEM} reset &> /dev/null
                 sleep 10
 
                 # start up ppp again
-                /usr/sbin/ppp $ppp_opts $isp > /dev/null 2> /dev/null
+                #/usr/sbin/ppp $ppp_opts $isp > /dev/null 2> /dev/null
 
                 # our work here is done
         fi
