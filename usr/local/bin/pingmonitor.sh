@@ -36,13 +36,13 @@ elif [ -f /etc/rc.conf ]; then
 fi
 
 # only continue if the ppp link should be up
-if [ ! $ppp_enable ]; then
-        # PPP is not configured in the rc files.
-        exit 0
-elif [ "$ppp_enable" = "NO" ] || [ "$ppp_enable" = "no" ]; then
-        # PPP is not wanted
-        exit 0
-fi
+#if [ ! $ppp_enable ]; then
+#        # PPP is not configured in the rc files.
+#        exit 0
+#elif [ "$ppp_enable" = "NO" ] || [ "$ppp_enable" = "no" ]; then
+#        # PPP is not wanted
+#        exit 0
+#fi
 
 # Set umask
 umask 137
