@@ -1,4 +1,4 @@
-#!/usr/local/bin/bash -C
+#!/usr/bin/env bash -C
 
 LOCK_FILE=/tmp/backup-media.pid
 WOL_BIN=/usr/local/bin/wol
