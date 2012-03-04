@@ -124,13 +124,9 @@ if [ ! "$DEVICES" ]; then
 	GLABEL_OUTPUT=`glabel status | sed 1d | awk '{print $1,$3}'`
 	for LABEL in $(zpool status backup | grep 'label' | awk '{print $1}')
 	do
-		DEV="/dev/`echo "${GLABEL_OUTPUT}" | grep "${LABEL} " | awk '{print $2}'`"
-		DEVICES="${DEVICES} ${DEV}"
+		DEVICES="${DEVICES} `echo "${GLABEL_OUTPUT}" | grep "${LABEL} " | awk '{print $2}'`"
 	done
-	DEVICES=`echo "${DEVICES}" | awk '{sub(/^[ \t]+/, "")};1'`
-
-# Eliminate any duplicates, stop disk in ascending sequence...
-	DEVICES=`echo ${DEVICES} | sort -u`
+	DEVICES=`echo "${DEVICES}" | awk '{sub(/^[ \t]+/, "")};1' | tr ' ' '\n' | sort -u | tr '\n' ' '`
 fi
 
 # Show config info...
