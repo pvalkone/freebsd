@@ -1,5 +1,5 @@
 /*
- * Toggles all relays off and on on a USB-RLY02.
+ * Turns all relays off and then on on a USB-RLY02.
  *
  * Based on: http://www.robot-electronics.co.uk/files/linux_rly02.c
  */
