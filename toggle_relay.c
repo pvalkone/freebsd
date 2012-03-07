@@ -26,6 +26,7 @@ int main(int argc, char *argv[]) {
     int fd = open(device, O_RDWR | O_NOCTTY | O_NDELAY);
     if (fd == -1) {
         printf("Failed to open device %s\n", device);
+        return EXIT_FAILURE;        
     } else {
         if (tcgetattr(fd, &defaults) < 0) perror("Failed to read port defaults\n");
         cfmakeraw(&config);
@@ -36,5 +37,5 @@ int main(int argc, char *argv[]) {
         if (tcsetattr(fd, TCSANOW, &defaults) < 0) perror("Failed to restore port defaults\n");
         close(fd);
     }
-    return(0);
+    return EXIT_SUCCESS;
 }
