@@ -25,7 +25,7 @@ int main(int argc, char *argv[]) {
     const char *device = "/dev/cuaU1";
     int fd = open(device, O_RDWR | O_NOCTTY | O_NDELAY);
     if (fd == -1) {
-        printf( "Failed to open port\n" );
+        printf("Failed to open device %s\n", device);
     } else {
         if (tcgetattr(fd, &defaults) < 0) perror("Failed to read port defaults\n");
         cfmakeraw(&config);
