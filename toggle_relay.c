@@ -19,7 +19,8 @@ void write_to_device(int fd, int command) {
     if (tcdrain(fd) < 0) perror("Error while waiting for output to be transmitted\n");
 }
 
-int main(int argc, char *argv[]) {    struct termios defaults;
+int main(int argc, char *argv[]) {
+    struct termios defaults;
     struct termios config;
     const char *device = "/dev/cuaU1";
     int fd = open(device, O_RDWR | O_NOCTTY | O_NDELAY);
