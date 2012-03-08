@@ -21,10 +21,10 @@ void write_to_device(int fd, int command) {
     char sbuf[2];
     sbuf[0] = command;
     if (write(fd, sbuf, 1) < 0) {
-        print_error_and_exit("Error while writing output\n");
+        print_error_and_exit("Error while writing output");
     }
     if (tcdrain(fd) < 0) {
-        print_error_and_exit("Error while waiting for output to be transmitted\n");
+        print_error_and_exit("Error while waiting for output to be transmitted");
     }
 }
 
@@ -39,17 +39,17 @@ int main(int argc, char *argv[]) {
         print_error_and_exit(message);
     }
     if (tcgetattr(fd, &defaults) < 0) {
-        print_error_and_exit("Failed to read port defaults\n");
+        print_error_and_exit("Failed to read port defaults");
     }
     cfmakeraw(&config);
     if (tcsetattr(fd, TCSANOW, &config) < 0) {
-        print_error_and_exit("Failed to configure port\n");
+        print_error_and_exit("Failed to configure port");
     }
     write_to_device(fd, 0x6E); // Turn all relays off
     sleep(3);
     write_to_device(fd, 0x64); // Turn all relays on
     if (tcsetattr(fd, TCSANOW, &defaults) < 0) {
-        print_error_and_exit("Failed to restore port defaults\n");
+        print_error_and_exit("Failed to restore port defaults");
     }
     close(fd);
     return EXIT_SUCCESS;
