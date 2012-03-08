@@ -34,8 +34,9 @@ int main(int argc, char *argv[]) {
     const char *device = "/dev/cuaU1";
     int fd = open(device, O_RDWR | O_NOCTTY | O_NDELAY);
     if (fd == -1) {
-        printf("Failed to open device %s\n", device);
-        exit(EXIT_FAILURE);        
+        char *message = malloc(100);
+        sprintf(message, "Failed to open device %s", device);
+        print_error_and_exit(message);
     }
     if (tcgetattr(fd, &defaults) < 0) {
         print_error_and_exit("Failed to read port defaults\n");
