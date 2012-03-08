@@ -29,7 +29,7 @@ void write_to_device(int fd, int command) {
         print_error_and_exit("Error while writing output");
     }
     if (tcdrain(fd) < 0) {
-        print_error_and_exit("Error while waiting for output to be transmitted");
+        print_error_and_exit("Error while waiting for output to be written");
     }
 }
 
