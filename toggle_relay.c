@@ -1,5 +1,5 @@
 /*
- * Turns all relays off and then on on a USB-RLY02.
+ * Turns all relays on or off on a USB-RLY02.
  *
  * Based on: http://www.robot-electronics.co.uk/files/linux_rly02.c
  */
@@ -13,7 +13,7 @@
 #include <sys/types.h>
 
 void usage() {
-    fprintf(stderr, "usage: %s device\n", getprogname());
+    fprintf(stderr, "usage: %s device on|off\n", getprogname());
     exit(EXIT_FAILURE);
 }
 
@@ -33,13 +33,24 @@ void write_to_device(int fd, int command) {
     }
 }
 
+int parse_command(char *state) {
+    if (strcmp(state, "on") == 0) {
+        return 0x64;
+    } else if (strcmp(state, "off") == 0) {
+        return 0x6E;
+    } else {
+        usage();
+    }
+}
+
 int main(int argc, char *argv[]) {
     struct termios defaults;
     struct termios config;
-    if (argc != 2) {
+    if (argc != 3) {
         usage();
     }
-    const char *device = argv[optind];
+    const char *device = argv[optind++];
+    int command = parse_command(argv[optind]);
     int fd = open(device, O_RDWR | O_NOCTTY | O_NDELAY);
     if (fd == -1) {
         char *message = malloc(22 + strlen(device) + 1);
@@ -53,9 +64,7 @@ int main(int argc, char *argv[]) {
     if (tcsetattr(fd, TCSANOW, &config) < 0) {
         print_error_and_exit("Failed to configure port");
     }
-    write_to_device(fd, 0x6E); // Turn all relays off
-    sleep(3);
-    write_to_device(fd, 0x64); // Turn all relays on
+    write_to_device(fd, command);
     if (tcsetattr(fd, TCSANOW, &defaults) < 0) {
         print_error_and_exit("Failed to restore port defaults");
     }
