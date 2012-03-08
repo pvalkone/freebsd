@@ -12,6 +12,11 @@
 #include <fcntl.h>
 #include <sys/types.h>
 
+void usage() {
+    fprintf(stderr, "usage: toggle_relay device\n");
+    exit(EXIT_FAILURE);
+}
+
 void print_error_and_exit(char *message) {
     perror(message);
     exit(EXIT_FAILURE);
@@ -31,7 +36,10 @@ void write_to_device(int fd, int command) {
 int main(int argc, char *argv[]) {
     struct termios defaults;
     struct termios config;
-    const char *device = "/dev/cuaU1";
+    if (argc != 2) {
+        usage();
+    }
+    const char *device = argv[optind];
     int fd = open(device, O_RDWR | O_NOCTTY | O_NDELAY);
     if (fd == -1) {
         char *message = malloc(100);
