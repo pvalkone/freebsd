@@ -13,7 +13,7 @@
 #include <sys/types.h>
 
 void usage() {
-    fprintf(stderr, "usage: toggle_relay device\n");
+    fprintf(stderr, "usage: %s device\n", getprogname());
     exit(EXIT_FAILURE);
 }
 
