@@ -51,7 +51,7 @@ int main(int argc, char *argv[]) {
     const char *device = argv[optind++];
     int command = parse_command(argv[optind]);
     if (command == -1) {
-      usage();
+        usage();
     }
     int fd = open(device, O_RDWR | O_NOCTTY | O_NDELAY);
     if (fd == -1) {
