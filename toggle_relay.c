@@ -38,9 +38,8 @@ int parse_command(char *state) {
         return 0x64;
     } else if (strcmp(state, "off") == 0) {
         return 0x6E;
-    } else {
-        usage();
     }
+    return -1;
 }
 
 int main(int argc, char *argv[]) {
@@ -51,6 +50,9 @@ int main(int argc, char *argv[]) {
     }
     const char *device = argv[optind++];
     int command = parse_command(argv[optind]);
+    if (command == -1) {
+      usage();
+    }
     int fd = open(device, O_RDWR | O_NOCTTY | O_NDELAY);
     if (fd == -1) {
         char *message = malloc(22 + strlen(device) + 1);
