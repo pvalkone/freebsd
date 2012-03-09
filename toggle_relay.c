@@ -12,6 +12,9 @@
 #include <fcntl.h>
 #include <sys/types.h>
 
+#define STATE_ON  "on"
+#define STATE_OFF "off"
+
 void usage() {
     fprintf(stderr, "usage: %s device on|off\n", getprogname());
     exit(EXIT_FAILURE);
@@ -34,9 +37,9 @@ void write_to_device(int fd, int command) {
 }
 
 int parse_command(char *state) {
-    if (strcmp(state, "on") == 0) {
+    if (strcmp(state, STATE_ON) == 0) {
         return 0x64;
-    } else if (strcmp(state, "off") == 0) {
+    } else if (strcmp(state, STATE_OFF) == 0) {
         return 0x6E;
     }
     return -1;
