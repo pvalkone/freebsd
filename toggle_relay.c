@@ -55,8 +55,8 @@ int main(int argc, char *argv[]) {
     }
     int fd = open(device, O_RDWR | O_NOCTTY | O_NDELAY);
     if (fd == -1) {
-        char *message = malloc(22 + strlen(device) + 1);
-        sprintf(message, "Failed to open device %s", device);
+        char *message;
+        asprintf(&message, "Failed to open device %s", device);
         print_error_and_exit(message);
     }
     if (tcgetattr(fd, &defaults) < 0) {
