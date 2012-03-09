@@ -16,7 +16,8 @@
 #define STATE_OFF "off"
 
 void usage() {
-    fprintf(stderr, "usage: %s device on|off\n", getprogname());
+    fprintf(stderr, "usage: %s device %s|%s\n", getprogname(), STATE_ON,
+        STATE_OFF);
     exit(EXIT_FAILURE);
 }
 
