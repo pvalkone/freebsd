@@ -25,7 +25,7 @@ isp="saunalahti"
 # These options will be given to /usr/sbin/ppp
 ppp_opts="-ddial"
 
-MODEM=`/usr/sbin/usbconfig list | grep -i 'Huawei' | cut -d ':' -f 1`
+RELAY="/dev/cua`/sbin/sysctl -a | grep umodem | grep -o 'ttyname=U[0-9]' | cut -d '=' -f 2`"
 
 # --- End of user-modifiable variables ---
 
@@ -124,8 +124,9 @@ if [ $ping_error -ne 0 ]; then
                 sleep 5
 
                 # Reset the modem, PPP should start up again when devd(8) detects the device
-                /usr/sbin/usbconfig -d ${MODEM} reset &> /dev/null
-                sleep 10
+                /usr/local/bin/toggle_relay ${RELAY} on                
+		sleep 10
+                /usr/local/bin/toggle_relay ${RELAY} off
 
                 # start up ppp again
                 #/usr/sbin/ppp $ppp_opts $isp > /dev/null 2> /dev/null
