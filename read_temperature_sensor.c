@@ -43,7 +43,7 @@ char *get_token(char *str, int count, char *delim) {
     char *token = strtok(str, delim);
     while (token != NULL) {
         if (i == count - 1) {
-            token[strlen(token) - 1] = '\0';
+            token[strlen(token) - 1] = '\0'; // Trim newline
             return token;
         }
         token = strtok(NULL, delim);
