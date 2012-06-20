@@ -48,7 +48,7 @@ char *get_token(char *str, int count, char *delim) {
         token = strtok(NULL, delim);
         i++;
     }
-    return NULL;
+    return token;
 }
 
 double read_temperature(int fd, int count) {
