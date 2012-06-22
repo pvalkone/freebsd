@@ -1,8 +1,9 @@
 /*
  * Read temperature data from a LM335 sensor attached to an Arduino
- * Duemilanove microcontroller board. Since the controller outputs the
- * data as a moving average of the last 10 measurements, only the 11th
- * value is output.
+ * Duemilanove microcontroller board.
+ * 
+ * Since the controller outputs the data as a moving average of the last
+ * 10 measurements, only the 11th value is output by this program.
  *
  * The format of the input data is:
  *
@@ -48,7 +49,7 @@ char *get_token(char *str, int count, char *delim) {
         token = strtok(NULL, delim);
         i++;
     }
-    return NULL;
+    return token;
 }
 
 double read_temperature(int fd, int count) {
