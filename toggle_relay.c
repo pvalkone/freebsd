@@ -3,14 +3,11 @@
  *
  * Based on: http://www.robot-electronics.co.uk/files/linux_rly02.c
  */
+#include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
 #include <termios.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <sys/types.h>
+#include <unistd.h>
 
 #define STATE_ON  "on"
 #define STATE_OFF "off"
