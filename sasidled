@@ -12,7 +12,7 @@ sasidled_prefix="/usr/local"
 
 name="sasidled"
 command_interpreter="/bin/sh"
-rcvar=`set_rcvar`
+rcvar="$name_enable"
 
 load_rc_config $name
 
