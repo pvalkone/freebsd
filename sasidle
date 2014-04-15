@@ -262,11 +262,11 @@ while [ true ]; do
 
 	for DISK in ${DEVICES}; do
 	    if [ "${DOSTOP}" ]; then
-		[ "${INFO}" ] && _log "smartctl -q errorsonly -n standby -s standby,now /dev/${DISK}"
+		[ "${DEBUG}" ] && _log "smartctl -q errorsonly -n standby -s standby,now /dev/${DISK}"
 		[  "${ASYNC}" ] && /usr/local/sbin/smartctl -q errorsonly -n standby -s standby,now /dev/${DISK} &
 		[ ! "${ASYNC}" ] && /usr/local/sbin/smartctl -q errorsonly -n standby -s standby,now /dev/${DISK}
 	    else
-		[ "${INFO}" ] && _log "#smartctl -q errorsonly -n standby -s standby,now /dev/${DISK}"
+		[ "${DEBUG}" ] && _log "#smartctl -q errorsonly -n standby -s standby,now /dev/${DISK}"
 	    fi
 	done
 
