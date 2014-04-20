@@ -239,11 +239,11 @@ while [ true ]; do
 
         for DISK in ${DEVICES}; do
             if [ "${DOSTOP}" ]; then
-                [ "${INFO}" ] && _log "camcontrol standby ${DISK}"
+                [ "${DEBUG}" ] && _log "camcontrol standby ${DISK}"
                 [  "${ASYNC}" ] && camcontrol standby ${DISK} &
                 [ ! "${ASYNC}" ] && camcontrol standby ${DISK}
             else
-                [ "${INFO}" ] && _log "#camcontrol standby ${DISK}"
+                [ "${DEBUG}" ] && _log "#camcontrol standby ${DISK}"
             fi
         done
 
