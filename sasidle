@@ -195,7 +195,7 @@ if [ "${INFO}" ]; then
     _log "Monitored Devices: ${DEVICES}"
     _log "Polling Interval:  ${INTERVAL} seconds"
     _log "Idle Timeout:      ${TIMEOUT} * ${INTERVAL} seconds"
-    _log "ASync Enabled:    $([ ${ASYNC} ] && echo "Yes" || echo "No")"
+    _log "ASync Enabled:     $([ ${ASYNC} ] && echo "Yes" || echo "No")"
     _log "Simulated Stop:    $([ ${DOSTOP} ] && echo "No" || echo "Yes")"
     _log "Log Disk Start:    $([ ${LOGSTART} ] && echo "Yes" || echo "No")"
     _log "---------------------------------------------------------"
