@@ -199,7 +199,6 @@ if [ "${INFO}" ]; then
     _log "Simulated Stop:    $([ ${DOSTOP} ] && echo "No" || echo "Yes")"
     _log "Log Disk Start:    $([ ${LOGSTART} ] && echo "Yes" || echo "No")"
     _log "---------------------------------------------------------"
-    _log ""
 fi
 
 # Skip 3 lines of "zpool iostat" headers...
