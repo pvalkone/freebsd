@@ -221,7 +221,7 @@ while [ true ]; do
         [ ! ${STOPPED} ] && let COUNT=COUNT-1 >/dev/null
     else
         if [ "${STOPPED}" -a "${LOGSTART}" ]; then
-            [ "${INFO}" ] && _log "** Restarting devices in pool \"${POOL_NAME}\" due to activity **"
+            [ "${INFO}" ] && _log "Restarting devices in pool \"${POOL_NAME}\" due to activity"
         fi
 
         COUNT=${TIMEOUT}
@@ -235,7 +235,7 @@ while [ true ]; do
 
 # If count reaches zero, stop devices
     if [ ${COUNT} -le 0 -a ! "${STOPPED}" ]; then
-        [ "${INFO}" ] && _log "** Stopping devices in pool \"${POOL_NAME}\" **"
+        [ "${INFO}" ] && _log "Stopping devices in pool \"${POOL_NAME}\""
 
         for DISK in ${DEVICES}; do
             if [ "${DOSTOP}" ]; then
